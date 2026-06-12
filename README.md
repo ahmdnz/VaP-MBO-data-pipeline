@@ -1,6 +1,6 @@
 # VaP & MBO Data Pipeline
 
-A real-time async data pipeline for collecting **Volume at Price (VaP)** and **Market-By-Order (MBO)** live data from the [OKX](https://okx.com) exchange via WebSocket, and storing it in compressed Parquet files for later strategy analysis.
+A real-time async data pipeline for collecting **Volume at Price (VaP)** and **Market-By-Order (MBO)** data from the [OKX](https://okx.com) exchange via WebSocket, and storing it in compressed Parquet files for later strategy analysis.
 
 ## What this pipeline does
 
