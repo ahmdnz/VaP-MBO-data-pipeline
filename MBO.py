@@ -309,13 +309,13 @@ async def unsubscribe_without_login(url, channels):
         res = await ws.recv()
         print(f"recv: {res}")
 
-
-url = "wss://wsaws.okx.com:8443/ws/v5/public"
-channels = [{"channel": "books", "instId": "BTC-USDT-SWAP"}, {"channel": "tickers", "instId": "BTC-USDT-SWAP"},
-            {"channel": "books", "instId": "ETH-USDT-SWAP"}, {"channel": "tickers", "instId": "ETH-USDT-SWAP"},
-            {"channel": "books", "instId": "XRP-USDT-SWAP"}, {"channel": "tickers", "instId": "XRP-USDT-SWAP"},
-            {"channel": "books", "instId": "ETC-USDT-SWAP"}, {"channel": "tickers", "instId": "ETC-USDT-SWAP"}]
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(subscribe_without_login(url, channels))
-loop.close()
+if __name__ == "__main__":
+    url = "wss://wsaws.okx.com:8443/ws/v5/public"
+    channels = [{"channel": "books", "instId": "BTC-USDT-SWAP"}, {"channel": "tickers", "instId": "BTC-USDT-SWAP"},
+                {"channel": "books", "instId": "ETH-USDT-SWAP"}, {"channel": "tickers", "instId": "ETH-USDT-SWAP"},
+                {"channel": "books", "instId": "XRP-USDT-SWAP"}, {"channel": "tickers", "instId": "XRP-USDT-SWAP"},
+                {"channel": "books", "instId": "ETC-USDT-SWAP"}, {"channel": "tickers", "instId": "ETC-USDT-SWAP"}]
+    
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(subscribe_without_login(url, channels))
+    loop.close()
