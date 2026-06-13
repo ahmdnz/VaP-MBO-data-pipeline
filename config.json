@@ -1,0 +1,8 @@
+{
+    "url": "wss://wspap.okx.com:8443/ws/v5/public",
+    "coins_list": ["BTC", "ETH", "XRP", "ETC"],
+    "cndlm1_channel": "candle1m",
+    "trades_channel": "trades",
+    "books_channel": "books",
+    "tickers_channel": "tickers"
+}
