@@ -145,13 +145,15 @@ if __name__ == '__main__':
     file_time = defaultdict(datetime)
     file_counter = defaultdict(int)
 
-    url = "wss://wsaws.okx.com:8443/ws/v5/public"
-    channels = [{"channel": "candle1m", "instId": "BTC-USDT-SWAP"}, {"channel": "trades", "instId": "BTC-USDT-SWAP"},
-                {"channel": "candle1m", "instId": "ETH-USDT-SWAP"}, {"channel": "trades", "instId": "ETH-USDT-SWAP"},
-                {"channel": "candle1m", "instId": "XRP-USDT-SWAP"}, {"channel": "trades", "instId": "XRP-USDT-SWAP"},
-                {"channel": "candle1m", "instId": "ETC-USDT-SWAP"}, {"channel": "trades", "instId": "ETC-USDT-SWAP"},
-                ]
-
+    config = json.load(open('config.json'))
+    url = config['url']
+    cndlm1_channel = config["cndlm1_channel"]
+    trades_channel = config['trades_channel']
+    coins_list = config['coins_list']
+    
+    channels = [{"channel": cndlm1_channel, "instId": f'{coin}-USDT-SWAP'} for coin in coins_list] +
+               [{"channel": trades_channel, "instId": f'{coin}-USDT-SWAP'} for coin in coins_list]
+    
     loop = asyncio.get_event_loop()
     loop.run_until_complete(subscribe_without_login(url, channels))
     loop.close()
