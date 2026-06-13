@@ -310,11 +310,14 @@ async def unsubscribe_without_login(url, channels):
         print(f"recv: {res}")
 
 if __name__ == "__main__":
-    url = "wss://wsaws.okx.com:8443/ws/v5/public"
-    channels = [{"channel": "books", "instId": "BTC-USDT-SWAP"}, {"channel": "tickers", "instId": "BTC-USDT-SWAP"},
-                {"channel": "books", "instId": "ETH-USDT-SWAP"}, {"channel": "tickers", "instId": "ETH-USDT-SWAP"},
-                {"channel": "books", "instId": "XRP-USDT-SWAP"}, {"channel": "tickers", "instId": "XRP-USDT-SWAP"},
-                {"channel": "books", "instId": "ETC-USDT-SWAP"}, {"channel": "tickers", "instId": "ETC-USDT-SWAP"}]
+    config = json.load(open('config.json'))
+    url = config['url']
+    tickers_channel = config["tickers_channel"]
+    books_channel = config['books_channel']
+    coins_list = config['coins_list']
+    
+    channels = [{"channel": books_channel, "instId": f'{coin}-USDT-SWAP'} for coin in coins_list] +
+               [{"channel": tickers_channel, "instId": f'{coin}-USDT-SWAP'} for coin in coins_list]
     
     loop = asyncio.get_event_loop()
     loop.run_until_complete(subscribe_without_login(url, channels))
